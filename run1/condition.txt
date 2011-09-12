@@ -34,7 +34,7 @@ Diffusion: on 0.4e-3
 
 InitialStatus:
 
-C10bnzn (mol/cm3) 5e-3 
+C10bnzn (mol/cm3) 5e-3 5e-3 5e-3 
 1  C 0 {2,B}  {6,B}  {7,S}
 2  C 0 {1,B}  {3,B}
 3  C 0 {2,B}  {4,B}
@@ -52,13 +52,13 @@ C10bnzn (mol/cm3) 5e-3
 15 C 0 {14,S} {16,S}
 16 C 0 {15,S}
 
-O2 (mol/cm3) 1E-5 ConstantConcentration
+O2 (mol/cm3) 1E-5 ConstantConcentration 1E-5 ConstantConcentration 1E-5 ConstantConcentration
 1 O 1 {2,S}
 2 O 1 {1,S}
 
 //ROOH isomers of nDB
 
-nDBOOH1 (mol/cm3) 2.0e-7
+nDBOOH1 (mol/cm3) 2.0e-7 2e-6 2e-5
 1  O 0 {2,S} {9,S}
 2  O 0 {1,S}
 3  C 0 {4,B} {8,B} {9,S}
