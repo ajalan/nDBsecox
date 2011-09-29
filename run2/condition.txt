@@ -1,0 +1,128 @@
+// Liquid diesel autoxidation of n-decyl benzene
+
+Database: RMG_database
+
+//MaxCarbonNumberPerSpecies: 10
+//MaxOxygenNumberPerSpecies: 4
+//MaxRadicalNumberPerSpecies: 3
+
+PrimaryThermoLibrary:
+Name: GRIMech3.0
+Location: GRI-Mech3.0
+Name: RMG-old
+Location: primaryThermoLibrary
+Name: DFT_QCI_thermo
+Location: DFT_QCI_thermo
+END
+
+PrimaryTransportLibrary:
+Name: GRIMech3.0
+Location: GRI-Mech3.0
+END
+
+ReadRestart: no 
+WriteRestart: no
+
+TemperatureModel: Constant (K) 573
+PressureModel: Constant (atm) 135
+
+EquationOfState: Liquid
+
+Solvation: on octane
+
+Diffusion: on 0.4e-3
+
+InitialStatus:
+
+C10bnzn (mol/cm3) 5e-3 5e-3 5e-3 
+1  C 0 {2,B}  {6,B}  {7,S}
+2  C 0 {1,B}  {3,B}
+3  C 0 {2,B}  {4,B}
+4  C 0 {3,B}  {5,B}
+5  C 0 {4,B}  {6,B}
+6  C 0 {5,B}  {1,B}
+7  C 0 {1,S}  {8,S}
+8  C 0 {7,S}  {9,S}
+9  C 0 {8,S}  {10,S}
+10 C 0 {9,S}  {11,S}
+11 C 0 {10,S} {12,S}
+12 C 0 {11,S} {13,S}
+13 C 0 {12,S} {14,S}
+14 C 0 {13,S} {15,S}
+15 C 0 {14,S} {16,S}
+16 C 0 {15,S}
+
+O2 (mol/cm3) 1E-5 ConstantConcentration 1E-5 ConstantConcentration 1E-5 ConstantConcentration
+1 O 1 {2,S}
+2 O 1 {1,S}
+
+//ROOH isomers of nDB
+
+nDBOOH1 (mol/cm3) 2.0e-7 2e-6 2e-5
+1  O 0 {2,S} {9,S}
+2  O 0 {1,S}
+3  C 0 {4,B} {8,B} {9,S}
+4  C 0 {3,B} {5,B}
+5  C 0 {4,B} {6,B}
+6  C 0 {5,B} {7,B}
+7  C 0 {6,B} {8,B}
+8  C 0 {7,B} {3,B}
+9  C 0 {3,S} {10,S} {1,S}
+10  C 0 {9,S} {11,S}
+11  C 0 {10,S} {12,S}
+12  C 0 {11,S} {13,S}
+13  C 0 {12,S} {14,S}
+14  C 0 {13,S} {15,S}
+15  C 0 {14,S} {16,S}
+16  C 0 {15,S} {17,S}
+17  C 0 {16,S} {18,S}
+18  C 0 {17,S}
+
+END
+
+InertGas:
+//N2 0.8797 (mol/cm3)
+//Ar 0.0e-6 (mol/cm3)
+END
+
+SpectroscopicDataEstimator: off
+PressureDependence: off
+
+FinishController:
+(1) Goal Conversion: C10bnzn 0.50
+(2) Error Tolerance: 0.001
+
+DynamicSimulator: DASSL
+Conversions: AUTO
+//TerminationTolerance: 1e20
+//PruningTolerance: 1.0E-18
+//MinSpeciesForPruning: 10000
+//MaxEdgeSpeciesAfterPruning: 10000
+Atol: 1e-22
+Rtol: 1e-8
+
+//Error bars: off
+//Display sensitivity coefficients: off
+//Display sensitivity information:
+//hxd-ooh
+//END
+
+PrimaryKineticLibrary:
+
+END
+
+ReactionLibrary:
+
+END
+
+SeedMechanism:  
+//Name: nDB
+//Location: /surrogate_components/nDB
+//GenerateReactions: no
+END
+
+ChemkinUnits:
+Verbose: on
+//SMILES: on/off
+A: moles
+Ea: kcal/mol
