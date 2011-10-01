@@ -23,8 +23,8 @@ END
 ReadRestart: no 
 WriteRestart: no
 
-TemperatureModel: Constant (K) 573
-PressureModel: Constant (atm) 135
+TemperatureModel: Constant (K) 523
+PressureModel: Constant (atm) 1
 
 EquationOfState: Liquid
 
@@ -90,7 +90,7 @@ PressureDependence: off
 
 FinishController:
 (1) Goal ReactionTime: 3600 (sec)
-(2) Error Tolerance: 0.05
+(2) Error Tolerance: 0.01
 
 DynamicSimulator: DASSL
 TimeStep: AUTO
@@ -98,8 +98,8 @@ TimeStep: AUTO
 //PruningTolerance: 1.0E-18
 //MinSpeciesForPruning: 10000
 //MaxEdgeSpeciesAfterPruning: 10000
-Atol: 1e-22
-Rtol: 1e-8
+Atol: 1e-20
+Rtol: 1e-6
 
 //Error bars: off
 //Display sensitivity coefficients: off
@@ -116,9 +116,9 @@ ReactionLibrary:
 END
 
 SeedMechanism:  
-//Name: nDB
-//Location: /surrogate_components/nDB
-//GenerateReactions: no
+Name: nDB
+Location: /surrogate_components/nDB
+GenerateReactions: no
 END
 
 ChemkinUnits:
